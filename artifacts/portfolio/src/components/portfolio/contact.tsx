@@ -14,9 +14,7 @@ export default function Contact() {
           className="max-w-2xl mx-auto"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Let's build something.</h2>
-          <p className="text-xl text-muted-foreground mb-12">
-            Whether you're looking for a product engineer, a data analyst, or just want to connect—my inbox is open.
-          </p>
+          <p className="text-xl text-muted-foreground mb-12">Whether you're looking for a product engineer, a data analyst, or just want to connect, my inbox is open.</p>
 
           <div className="flex justify-center items-center mb-16">
             <Button asChild size="lg" className="w-full sm:w-auto text-base px-8 h-14 rounded-full gap-2">
