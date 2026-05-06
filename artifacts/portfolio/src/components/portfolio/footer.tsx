@@ -21,7 +21,7 @@ export default function Footer() {
             <Mail size={20} />
           </a>
           <a 
-            href="https://www.linkedin.com/in/yafa-khateeb/" // TODO: Confirm LinkedIn URL
+            href="https://www.linkedin.com/in/yafa-khateeb/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"

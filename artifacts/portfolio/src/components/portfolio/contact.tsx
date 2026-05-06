@@ -33,7 +33,7 @@ export default function Contact() {
 
           <div className="flex justify-center gap-6">
             <a 
-              href="https://www.linkedin.com/in/yafa-khateeb/" // TODO: Replace with confirmed LinkedIn URL
+              href="https://www.linkedin.com/in/yafa-khateeb/"
               target="_blank" 
               rel="noopener noreferrer"
               className="p-4 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all shadow-sm hover:shadow-md"

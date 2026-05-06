@@ -13,7 +13,7 @@ const PROJECTS = [
     title: "Masar",
     description: "A web app built and deployed on Replit using vibe-coding workflows.",
     badges: ["Replit", "React"],
-    action: { label: "Visit live site", href: "#", icon: ExternalLink } // TODO: Update with real URL
+    action: { label: "Visit live site", href: "https://career-masar.replit.app/", icon: ExternalLink }
   },
   {
     id: "clinicflow",
@@ -92,8 +92,9 @@ const PROJECTS = [
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // TODO: Update this constant with the real URL when the file is available
-  const DASHBOARD_DECK_URL = ""; 
+  const DASHBOARD_DECK_FILE_ID = "1MxVPGXpj7d5zdkaq3XxE043hHryPRP2w";
+  const DASHBOARD_DECK_URL = `https://docs.google.com/presentation/d/${DASHBOARD_DECK_FILE_ID}/embed?start=false&loop=false&delayms=5000`;
+  const DASHBOARD_DECK_DOWNLOAD_URL = `https://docs.google.com/presentation/d/${DASHBOARD_DECK_FILE_ID}/export/pdf`;
 
   return (
     <section id="projects" className="py-24 bg-muted/30">
@@ -167,7 +168,7 @@ export default function Projects() {
                           <Presentation size={16} /> Preview slides
                         </Button>
                         <Button variant="outline" asChild className="flex-1 gap-2">
-                          <a href="#" download> {/* TODO: replace # with real file path like /assets/banking-dashboards.pdf */}
+                          <a href={DASHBOARD_DECK_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer">
                             Download deck
                           </a>
                         </Button>
