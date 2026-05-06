@@ -3,7 +3,7 @@ modules = ["nodejs-24"]
 [deployment]
 router = "application"
 deploymentTarget = "static"
-publicDir = "https://portfolio-yafa-khateeb.replit.app/"
+publicDir = "artifacts/portfolio/dist/public"
 
 [deployment.postBuild]
 args = ["pnpm", "store", "prune"]
