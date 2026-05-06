@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
     id: "masar",
     type: "Live web app",
     title: "Masar",
-    description: "A web app built and deployed on Replit using vibe-coding workflows.",
+    description: "Masar collects honest, firsthand experiences from professionals across different fields and shares them with young people exploring their future. By pairing real career stories with personality insights, Masar helps students and early career seekers find the path that truly matches who they are.",
     badges: ["Replit", "React"],
     visual: { kind: "image", src: masarImg, alt: "Preview of the Masar web app dashboard" },
     action: { label: "Visit live site", href: "https://career-masar.replit.app/", icon: ExternalLink }
