@@ -153,9 +153,8 @@ function ProjectVisualBlock({ visual }: { visual: ProjectVisual }) {
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const DASHBOARD_DECK_FILE_ID = "1MxVPGXpj7d5zdkaq3XxE043hHryPRP2w";
-  const DASHBOARD_DECK_URL = `https://docs.google.com/presentation/d/${DASHBOARD_DECK_FILE_ID}/embed?start=false&loop=false&delayms=5000`;
-  const DASHBOARD_DECK_DOWNLOAD_URL = `https://docs.google.com/presentation/d/${DASHBOARD_DECK_FILE_ID}/export/pdf`;
+  const DASHBOARD_DECK_URL = `${import.meta.env.BASE_URL}assets/banking-dashboards.pdf`;
+  const DASHBOARD_DECK_DOWNLOAD_URL = DASHBOARD_DECK_URL;
 
   return (
     <section id="projects" className="py-24 bg-muted/30">
@@ -230,7 +229,7 @@ export default function Projects() {
                           <Presentation size={16} /> Preview slides
                         </Button>
                         <Button variant="outline" asChild className="flex-1 gap-2">
-                          <a href={DASHBOARD_DECK_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer">
+                          <a href={DASHBOARD_DECK_DOWNLOAD_URL} download="banking-dashboards.pdf">
                             Download deck
                           </a>
                         </Button>
