@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import masarImg from "@/assets/project-masar.webp";
+import masarImg from "@assets/image_1778095868033.png";
 import clinicflowImg from "@/assets/project-clinicflow.webp";
 import powerbiImg from "@/assets/project-powerbi.webp";
 
@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
     title: "Masar",
     description: "Masar collects honest, firsthand experiences from professionals across different fields and shares them with young people exploring their future. By pairing real career stories with personality insights, Masar helps students and early career seekers find the path that truly matches who they are.",
     badges: ["Replit", "React"],
-    visual: { kind: "image", src: masarImg, alt: "Preview of the Masar web app dashboard" },
+    visual: { kind: "image", src: masarImg, alt: "Screenshot of the Masar landing page" },
     action: { label: "Visit live site", href: "https://career-masar.replit.app/", icon: ExternalLink }
   },
   {
