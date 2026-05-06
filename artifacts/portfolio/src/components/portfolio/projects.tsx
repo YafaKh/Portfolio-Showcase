@@ -40,7 +40,7 @@ const PROJECTS: Project[] = [
     id: "clinicflow",
     type: "Replit project",
     title: "ClinicFlow",
-    description: "A clinic management workflow prototype built on Replit.",
+    description: "ClinicFlow is a calm, bilingual workbench built for the busy private clinic. Bookings, patient logs, billing, and WhatsApp reminders live in one quiet workspace. It replaces paper diaries and scattered chats with one steady place to run the day.",
     badges: ["Replit"],
     visual: { kind: "image", src: clinicflowImg, alt: "Preview of the ClinicFlow clinic management dashboard" },
     action: null
