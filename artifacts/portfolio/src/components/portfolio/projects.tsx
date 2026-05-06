@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import masarImg from "@assets/image_1778095868033.png";
-import clinicflowImg from "@/assets/project-clinicflow.webp";
+import clinicflowImg from "@assets/image_1778095933469.png";
 import powerbiImg from "@/assets/project-powerbi.webp";
 
 type ProjectVisual =
@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
     title: "ClinicFlow",
     description: "ClinicFlow is a calm, bilingual workbench built for the busy private clinic. Bookings, patient logs, billing, and WhatsApp reminders live in one quiet workspace. It replaces paper diaries and scattered chats with one steady place to run the day.",
     badges: ["Replit"],
-    visual: { kind: "image", src: clinicflowImg, alt: "Preview of the ClinicFlow clinic management dashboard" },
+    visual: { kind: "image", src: clinicflowImg, alt: "Screenshot of the ClinicFlow landing page" },
     action: null
   },
   {
