@@ -1,18 +1,39 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Presentation, Code2 } from "lucide-react";
+import { ExternalLink, Github, Presentation, Code2, FileCode2, Database, BarChart3, Brain, Image as ImageIcon, Server } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import masarImg from "@/assets/project-masar.webp";
+import clinicflowImg from "@/assets/project-clinicflow.webp";
+import powerbiImg from "@/assets/project-powerbi.webp";
 
-const PROJECTS = [
+type ProjectVisual =
+  | { kind: "image"; src: string; alt: string }
+  | { kind: "graphic"; gradient: string; icon: typeof Code2; label: string };
+
+type Project = {
+  id: string;
+  type: string;
+  title: string;
+  description: string;
+  badges: string[];
+  visual: ProjectVisual;
+  action:
+    | { label: string; href: string; icon?: typeof ExternalLink; isModal?: false }
+    | { label: string; isModal: true }
+    | null;
+};
+
+const PROJECTS: Project[] = [
   {
     id: "masar",
     type: "Live web app",
     title: "Masar",
     description: "A web app built and deployed on Replit using vibe-coding workflows.",
     badges: ["Replit", "React"],
+    visual: { kind: "image", src: masarImg, alt: "Preview of the Masar web app dashboard" },
     action: { label: "Visit live site", href: "https://career-masar.replit.app/", icon: ExternalLink }
   },
   {
@@ -21,7 +42,8 @@ const PROJECTS = [
     title: "ClinicFlow",
     description: "A clinic management workflow prototype built on Replit.",
     badges: ["Replit"],
-    action: null // Not deployed
+    visual: { kind: "image", src: clinicflowImg, alt: "Preview of the ClinicFlow clinic management dashboard" },
+    action: null
   },
   {
     id: "banking-dashboards",
@@ -29,6 +51,7 @@ const PROJECTS = [
     title: "Power BI Banking Dashboards",
     description: "Power BI dashboards built for senior management at Palestine Islamic Bank, covering financial KPIs and operational reporting.",
     badges: ["Power BI", "Data Analysis"],
+    visual: { kind: "image", src: powerbiImg, alt: "Preview of a Power BI banking dashboard slide" },
     action: { label: "View Deck", isModal: true }
   },
   {
@@ -37,6 +60,7 @@ const PROJECTS = [
     title: "bikeshare-usa-analysis",
     description: "Analyze bike share data for Chicago, NYC, and Washington using Python. Compute statistics, explore trends, and build an interactive terminal-based program.",
     badges: ["Python"],
+    visual: { kind: "graphic", gradient: "from-emerald-500/80 to-teal-600/80", icon: BarChart3, label: "Python · Data" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/bikeshare-usa-analysis", icon: Github }
   },
   {
@@ -45,6 +69,7 @@ const PROJECTS = [
     title: "lead-scoring-eda",
     description: "Exploratory data analysis on X Education's lead scoring dataset — conversion trends, segment insights, and marketing recommendations.",
     badges: ["Jupyter Notebook"],
+    visual: { kind: "graphic", gradient: "from-orange-500/80 to-rose-500/80", icon: BarChart3, label: "Jupyter · EDA" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/lead-scoring-eda", icon: Github }
   },
   {
@@ -53,6 +78,7 @@ const PROJECTS = [
     title: "Training-A-Neural-Network",
     description: "Training a neural network using loss functions, optimizers, and gradient descent in PyTorch.",
     badges: ["Jupyter Notebook", "PyTorch"],
+    visual: { kind: "graphic", gradient: "from-fuchsia-500/80 to-indigo-600/80", icon: Brain, label: "PyTorch · ML" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/Training-A-Neural-Network", icon: Github }
   },
   {
@@ -61,6 +87,7 @@ const PROJECTS = [
     title: "ai-image-stitching-edge-detection",
     description: "An interactive Python application for image stitching and edge detection using Canny, DoG, and AI-based human detection. Features adjustable morphological operations and a user-friendly GUI.",
     badges: ["Python"],
+    visual: { kind: "graphic", gradient: "from-sky-500/80 to-blue-700/80", icon: ImageIcon, label: "Python · Vision" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/ai-image-stitching-edge-detection", icon: Github }
   },
   {
@@ -69,6 +96,7 @@ const PROJECTS = [
     title: "investigate_rdb",
     description: "Explore a movie rental database using SQL. Analyze data, write queries, and create visualizations to answer business questions in a presentation-ready format.",
     badges: ["SQL"],
+    visual: { kind: "graphic", gradient: "from-amber-500/80 to-orange-600/80", icon: Database, label: "SQL · Analysis" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/investigate_rdb", icon: Github }
   },
   {
@@ -77,6 +105,7 @@ const PROJECTS = [
     title: "traning_matching_portal",
     description: "Senior project — a training matching portal.",
     badges: ["PHP", "Blade"],
+    visual: { kind: "graphic", gradient: "from-violet-500/80 to-purple-700/80", icon: Server, label: "PHP · Blade" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/traning_matching_portal", icon: Github }
   },
   {
@@ -85,9 +114,41 @@ const PROJECTS = [
     title: "Resturant_control_panel",
     description: "An admin control panel to manage customers, built with Laravel & Bootstrap.",
     badges: ["Laravel", "Bootstrap"],
+    visual: { kind: "graphic", gradient: "from-red-500/80 to-rose-700/80", icon: FileCode2, label: "Laravel · Bootstrap" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/Resturant_control_panel", icon: Github }
   }
 ];
+
+function ProjectVisualBlock({ visual }: { visual: ProjectVisual }) {
+  if (visual.kind === "image") {
+    return (
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+        <img
+          src={visual.src}
+          alt={visual.alt}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+      </div>
+    );
+  }
+  const Icon = visual.icon;
+  return (
+    <div className={`relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br ${visual.gradient}`}>
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.6) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.4) 0, transparent 35%)"
+      }} />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Icon className="h-14 w-14 text-white/90 drop-shadow-md transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+      </div>
+      <div className="absolute bottom-3 left-4 text-xs font-medium uppercase tracking-wider text-white/90">
+        {visual.label}
+      </div>
+    </div>
+  );
+}
 
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -134,7 +195,8 @@ export default function Projects() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="flex h-full"
             >
-              <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-md hover:border-primary/30 group">
+              <Card className="flex flex-col h-full overflow-hidden transition-all hover:shadow-md hover:border-primary/30 group p-0">
+                <ProjectVisualBlock visual={project.visual} />
                 <CardHeader>
                   <div className="mb-2">
                     <Badge variant={project.type === "GitHub" ? "secondary" : "default"} className="font-medium tracking-wide">
@@ -161,8 +223,8 @@ export default function Projects() {
                   {project.action ? (
                     project.action.isModal ? (
                       <div className="flex gap-3 w-full">
-                        <Button 
-                          onClick={() => setIsModalOpen(true)} 
+                        <Button
+                          onClick={() => setIsModalOpen(true)}
                           className="flex-1 gap-2"
                         >
                           <Presentation size={16} /> Preview slides
@@ -201,24 +263,20 @@ export default function Projects() {
               Preview of financial KPIs and operational reporting dashboards.
             </DialogDescription>
           </DialogHeader>
-          
+
           <div className="flex-1 bg-muted rounded-md overflow-hidden relative flex items-center justify-center border border-border">
             {DASHBOARD_DECK_URL ? (
-              <iframe 
-                src={DASHBOARD_DECK_URL} 
+              <iframe
+                src={DASHBOARD_DECK_URL}
                 className="w-full h-full border-0"
                 title="Banking Dashboards Presentation"
               />
             ) : (
-              <div className="text-center p-8 flex flex-col items-center">
-                <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center shadow-sm mb-4">
-                  <Presentation className="text-muted-foreground h-8 w-8" />
-                </div>
-                <h3 className="text-lg font-medium mb-2">Slide preview coming soon</h3>
-                <p className="text-muted-foreground text-sm max-w-sm">
-                  Yafa will upload the presentation deck here shortly. Check back later to view the Power BI dashboards.
-                </p>
-              </div>
+              <img
+                src={powerbiImg}
+                alt="Power BI banking dashboard preview"
+                className="max-h-full max-w-full object-contain"
+              />
             )}
           </div>
         </DialogContent>

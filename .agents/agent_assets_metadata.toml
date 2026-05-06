@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "AmjTSVcD6LwSf7EasQbJ0"
+uri = "file://artifacts/portfolio/src/assets/project-masar.png"
+type = "image"
+title = "masar app screenshot"
+
+[[generated]]
+id = "FIvBPAScYhzlQzK6loxJv"
+uri = "file://artifacts/portfolio/src/assets/project-clinicflow.png"
+type = "image"
+title = "clinicflow app screenshot"
+
+[[generated]]
+id = "D_yR00FI0h9LCl8N8x302"
+uri = "file://artifacts/portfolio/src/assets/project-powerbi.png"
+type = "image"
+title = "power bi banking dashboard"
