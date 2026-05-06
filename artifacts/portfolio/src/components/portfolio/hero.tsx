@@ -18,7 +18,7 @@ export default function Hero() {
             className="flex items-center gap-2 text-muted-foreground mb-6 font-medium"
           >
             <MapPin size={18} className="text-primary" />
-            <span>Ramallah, Palestine</span>
+            <span>Palestine</span>
           </motion.div>
 
           <motion.h1
