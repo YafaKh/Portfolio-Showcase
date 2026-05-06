@@ -1,6 +1,6 @@
-# [Project name]
+# Yafa Khateeb — Portfolio
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A single-page personal portfolio website for Yafa Khateeb (Financial Data Analyst & Product Engineer) showcasing experience, projects (live web apps, Replit projects, GitHub repos, Power BI dashboards), skills, and contact info.
 
 ## Run & Operate
 
@@ -22,15 +22,23 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/portfolio/` — the portfolio React + Vite app (the main deliverable)
+  - `src/pages/home.tsx` — assembles all portfolio sections
+  - `src/components/portfolio/*` — Hero, About, Experience, Projects, Skills, Education, Contact, Navbar, Footer
+  - `src/index.css` — color theme (HSL tokens, light + dark)
+- `artifacts/api-server/`, `lib/db/`, `lib/api-spec/` — scaffolded but unused (no backend in this build)
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Frontend-only: no backend, DB, or API hooks. Content is hardcoded in components.
+- Theme defined in `src/index.css` HSL variables; dark mode supported via `.dark` class.
+- Animations use framer-motion with respect for `prefers-reduced-motion`.
+- Power BI deck preview is wired with empty src + TODO comments — drop in a PDF/PPTX and a URL to enable.
+- LinkedIn URL and Masar/ClinicFlow live URLs are placeholders with TODO comments — Yafa fills these in.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Single-page portfolio with: hero, about, experience timeline (Proficien, Palestine Islamic Bank, Auxilium, Zakey Tech volunteer), projects grid (Masar, ClinicFlow, Power BI deck, 7 GitHub repos), skills grouped by category, education & certifications, contact (email, phone, LinkedIn, GitHub), sticky nav, footer.
 
 ## User preferences
 
