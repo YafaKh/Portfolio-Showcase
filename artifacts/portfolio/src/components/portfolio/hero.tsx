@@ -39,14 +39,19 @@ export default function Hero() {
             Financial Data Analyst & Product Engineer
           </motion.h2>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl"
+            className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl space-y-4"
           >
-            Data Analyst with 2+ years of experience in financial and operational reporting, specializing in SQL, Python, and Power BI. Building automated dashboards, optimizing reporting workflows, and supporting data-driven decisions across teams.
-          </motion.p>
+            <p>
+              I bridge the gap between tools, systems, data, and the business, turning operational and financial complexity into something teams can actually use.
+            </p>
+            <p>
+              A Data Analyst with a Computer Science background, I specialize in SQL, Python, and Power BI: automating dashboards, optimizing reporting workflows, and supporting data-driven decisions across teams. I'm drawn to problems with logical depth and clear, real-world impact.
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
