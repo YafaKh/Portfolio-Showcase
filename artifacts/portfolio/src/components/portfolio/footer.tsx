@@ -9,7 +9,6 @@ export default function Footer() {
         <div className="text-center md:text-left">
           <h3 className="font-bold text-foreground text-lg">Yafa Khateeb</h3>
           <p className="text-muted-foreground text-sm mt-1">Financial Data Analyst & Product Engineer</p>
-          <p className="text-muted-foreground text-xs mt-2">Ramallah, Palestine • &copy; {currentYear}</p>
         </div>
 
         <div className="flex items-center gap-4">
