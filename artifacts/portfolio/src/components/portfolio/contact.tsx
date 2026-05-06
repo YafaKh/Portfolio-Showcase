@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Contact() {
@@ -18,15 +18,10 @@ export default function Contact() {
             Whether you're looking for a product engineer, a data analyst, or just want to connect—my inbox is open.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+          <div className="flex justify-center items-center mb-16">
             <Button asChild size="lg" className="w-full sm:w-auto text-base px-8 h-14 rounded-full gap-2">
-              <a href="mailto:Yafa.khateeb4@gmail.com">
-                <Mail size={18} /> Email Me
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-base px-8 h-14 rounded-full gap-2 bg-background hover:bg-muted">
-              <a href="tel:+972568449589">
-                <Phone size={18} /> +972 568449589
+              <a href="mailto:yafa.khateeb4@gmail.com">
+                <Mail size={18} /> yafa.khateeb4@gmail.com
               </a>
             </Button>
           </div>
