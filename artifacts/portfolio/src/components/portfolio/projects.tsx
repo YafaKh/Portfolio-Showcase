@@ -28,6 +28,24 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    id: "banking-dashboards",
+    type: "Data dashboards",
+    title: "Power BI Banking Dashboards",
+    description: "Power BI dashboards built for senior management at Palestine Islamic Bank, covering financial KPIs and operational reporting.",
+    badges: ["Power BI", "Data Analysis"],
+    visual: { kind: "image", src: powerbiImg, alt: "Preview of a Power BI banking dashboard slide" },
+    action: { label: "View Deck", isModal: true }
+  },
+  {
+    id: "lead-scoring",
+    type: "GitHub",
+    title: "lead-scoring-eda",
+    description: "Exploratory data analysis on X Education's lead scoring dataset — conversion trends, segment insights, and marketing recommendations.",
+    badges: ["Jupyter Notebook"],
+    visual: { kind: "graphic", gradient: "from-orange-500/80 to-rose-500/80", icon: BarChart3, label: "Jupyter · EDA" },
+    action: { label: "View on GitHub", href: "https://github.com/YafaKh/lead-scoring-eda", icon: Github }
+  },
+  {
     id: "masar",
     type: "Live web app",
     title: "Masar",
@@ -46,15 +64,6 @@ const PROJECTS: Project[] = [
     action: null
   },
   {
-    id: "banking-dashboards",
-    type: "Data dashboards",
-    title: "Power BI Banking Dashboards",
-    description: "Power BI dashboards built for senior management at Palestine Islamic Bank, covering financial KPIs and operational reporting.",
-    badges: ["Power BI", "Data Analysis"],
-    visual: { kind: "image", src: powerbiImg, alt: "Preview of a Power BI banking dashboard slide" },
-    action: { label: "View Deck", isModal: true }
-  },
-  {
     id: "bikeshare",
     type: "GitHub",
     title: "bikeshare-usa-analysis",
@@ -62,15 +71,6 @@ const PROJECTS: Project[] = [
     badges: ["Python"],
     visual: { kind: "graphic", gradient: "from-emerald-500/80 to-teal-600/80", icon: BarChart3, label: "Python · Data" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/bikeshare-usa-analysis", icon: Github }
-  },
-  {
-    id: "lead-scoring",
-    type: "GitHub",
-    title: "lead-scoring-eda",
-    description: "Exploratory data analysis on X Education's lead scoring dataset — conversion trends, segment insights, and marketing recommendations.",
-    badges: ["Jupyter Notebook"],
-    visual: { kind: "graphic", gradient: "from-orange-500/80 to-rose-500/80", icon: BarChart3, label: "Jupyter · EDA" },
-    action: { label: "View on GitHub", href: "https://github.com/YafaKh/lead-scoring-eda", icon: Github }
   },
   {
     id: "neural-net",
