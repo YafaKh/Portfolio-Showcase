@@ -4,9 +4,9 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
+  { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
