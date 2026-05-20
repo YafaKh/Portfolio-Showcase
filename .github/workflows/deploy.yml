@@ -31,6 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          npm_config_user_agent: pnpm/11.0.0 npm/? node/v22.0.0 linux x64
 
       - name: Build portfolio
         working-directory: artifacts/portfolio
