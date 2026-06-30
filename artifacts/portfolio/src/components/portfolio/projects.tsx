@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import masarImg from "@assets/image_1778095868033.png";
 import clinicflowImg from "@assets/image_1778095933469.png";
+import tendopostImg from "@assets/TendoPost.png";
 import powerbiImg from "@/assets/project-powerbi.webp";
 
 type ProjectVisual =
@@ -23,10 +24,20 @@ type Project = {
   action:
     | { label: string; href: string; icon?: typeof ExternalLink; isModal?: false }
     | { label: string; isModal: true }
+    | { label: string; disabled: true }
     | null;
 };
 
 const PROJECTS: Project[] = [
+  {
+    id: "tendopost",
+    type: "Coming soon",
+    title: "Tendopost",
+    description: "Cold email & B2B outreach platform built for deliverability at scale — campaign creation, contact management, and full send tracking (opens, clicks, bounces, unsubscribes), without the per-seat pricing of tools like Instantly or Smartlead. Designed the NestJS backend across campaigns, contacts, and sending; built an async email pipeline with BullMQ + Redis including suppression list logic and quota enforcement; and architected click/open tracking via a self-hosted redirect and pixel system.",
+    badges: ["NestJS", "Next.js", "PostgreSQL", "Drizzle ORM", "BullMQ", "Redis", "Docker", "Nginx", "Turborepo"],
+    visual: { kind: "image", src: tendopostImg, alt: "Screenshot of the TendoPost landing page" },
+    action: { label: "Coming live soon", disabled: true }
+  },
   {
     id: "banking-dashboards",
     type: "Data dashboards",
@@ -47,12 +58,12 @@ const PROJECTS: Project[] = [
   },
   {
     id: "masar",
-    type: "Live web app",
+    type: "Replit project",
     title: "Masar",
     description: "Masar collects honest, firsthand experiences from professionals across different fields and shares them with young people exploring their future. By pairing real career stories with personality insights, Masar helps students and early career seekers find the path that truly matches who they are.",
     badges: ["Replit", "React"],
     visual: { kind: "image", src: masarImg, alt: "Screenshot of the Masar landing page" },
-    action: { label: "Visit live site", href: "https://career-masar.replit.app/", icon: ExternalLink }
+    action: null
   },
   {
     id: "clinicflow",
@@ -220,7 +231,11 @@ export default function Projects() {
                 </CardContent>
                 <CardFooter className="pt-4 border-t border-border/50 bg-muted/20">
                   {project.action ? (
-                    project.action.isModal ? (
+                    "disabled" in project.action ? (
+                      <Button variant="secondary" disabled className="w-full">
+                        {project.action.label}
+                      </Button>
+                    ) : project.action.isModal ? (
                       <div className="flex gap-3 w-full">
                         <Button
                           onClick={() => setIsModalOpen(true)}
