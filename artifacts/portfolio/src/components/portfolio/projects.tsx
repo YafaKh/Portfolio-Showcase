@@ -23,12 +23,30 @@ type Project = {
   visual: ProjectVisual;
   action:
     | { label: string; href: string; icon?: typeof ExternalLink; isModal?: false }
-    | { label: string; isModal: true }
+    | { label: string; isModal: true; deckId: string }
     | { label: string; disabled: true }
     | null;
 };
 
 const PROJECTS: Project[] = [
+  {
+    id: "masar",
+    type: "Replit project",
+    title: "Masar",
+    description: "Masar collects honest, firsthand experiences from professionals across different fields and shares them with young people exploring their future. By pairing real career stories with personality insights, Masar helps students and early career seekers find the path that truly matches who they are.",
+    badges: ["Replit", "React"],
+    visual: { kind: "image", src: masarImg, alt: "Screenshot of the Masar landing page" },
+    action: { label: "View case study", isModal: true, deckId: "masar" }
+  },
+  {
+    id: "clinicflow",
+    type: "Replit project",
+    title: "ClinicFlow",
+    description: "ClinicFlow is a calm, bilingual workbench built for the busy private clinic. Bookings, patient logs, billing, and WhatsApp reminders live in one quiet workspace. It replaces paper diaries and scattered chats with one steady place to run the day.",
+    badges: ["Replit"],
+    visual: { kind: "image", src: clinicflowImg, alt: "Screenshot of the ClinicFlow landing page" },
+    action: { label: "View case study", isModal: true, deckId: "clinicflow" }
+  },
   {
     id: "tendopost",
     type: "Coming soon",
@@ -45,7 +63,7 @@ const PROJECTS: Project[] = [
     description: "Power BI dashboards built for senior management at Palestine Islamic Bank, covering financial KPIs and operational reporting.",
     badges: ["Power BI", "Data Analysis"],
     visual: { kind: "image", src: powerbiImg, alt: "Preview of a Power BI banking dashboard slide" },
-    action: { label: "View Deck", isModal: true }
+    action: { label: "View Deck", isModal: true, deckId: "powerbi" }
   },
   {
     id: "lead-scoring",
@@ -55,24 +73,6 @@ const PROJECTS: Project[] = [
     badges: ["Jupyter Notebook"],
     visual: { kind: "graphic", gradient: "from-orange-500/80 to-rose-500/80", icon: BarChart3, label: "Jupyter · EDA" },
     action: { label: "View on GitHub", href: "https://github.com/YafaKh/lead-scoring-eda", icon: Github }
-  },
-  {
-    id: "masar",
-    type: "Replit project",
-    title: "Masar",
-    description: "Masar collects honest, firsthand experiences from professionals across different fields and shares them with young people exploring their future. By pairing real career stories with personality insights, Masar helps students and early career seekers find the path that truly matches who they are.",
-    badges: ["Replit", "React"],
-    visual: { kind: "image", src: masarImg, alt: "Screenshot of the Masar landing page" },
-    action: null
-  },
-  {
-    id: "clinicflow",
-    type: "Replit project",
-    title: "ClinicFlow",
-    description: "ClinicFlow is a calm, bilingual workbench built for the busy private clinic. Bookings, patient logs, billing, and WhatsApp reminders live in one quiet workspace. It replaces paper diaries and scattered chats with one steady place to run the day.",
-    badges: ["Replit"],
-    visual: { kind: "image", src: clinicflowImg, alt: "Screenshot of the ClinicFlow landing page" },
-    action: null
   },
   {
     id: "bikeshare",
@@ -161,11 +161,31 @@ function ProjectVisualBlock({ visual }: { visual: ProjectVisual }) {
   );
 }
 
-export default function Projects() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const DECKS: Record<string, { title: string; description: string; fileName: string; buttonLabel: string }> = {
+  masar: {
+    title: "Masar — Case Study",
+    description: "How Masar pairs firsthand career stories with personality insights for young job seekers.",
+    fileName: "masar-case-study.pdf",
+    buttonLabel: "View case study"
+  },
+  clinicflow: {
+    title: "ClinicFlow — Case Study",
+    description: "A calm, bilingual booking and billing workbench built for private clinics.",
+    fileName: "clinicflow-case-study.pdf",
+    buttonLabel: "View case study"
+  },
+  powerbi: {
+    title: "Power BI Banking Dashboards",
+    description: "Preview of financial KPIs and operational reporting dashboards.",
+    fileName: "banking-dashboards.pdf",
+    buttonLabel: "View Deck"
+  }
+};
 
-  const DASHBOARD_DECK_URL = `${import.meta.env.BASE_URL}assets/banking-dashboards.pdf`;
-  const DASHBOARD_DECK_DOWNLOAD_URL = DASHBOARD_DECK_URL;
+export default function Projects() {
+  const [openDeckId, setOpenDeckId] = useState<string | null>(null);
+  const openDeck = openDeckId ? DECKS[openDeckId] : null;
+  const openDeckUrl = openDeck ? `${import.meta.env.BASE_URL}assets/${openDeck.fileName}` : null;
 
   return (
     <section id="projects" className="py-24 bg-muted/30">
@@ -236,19 +256,22 @@ export default function Projects() {
                         {project.action.label}
                       </Button>
                     ) : project.action.isModal ? (
-                      <div className="flex gap-3 w-full">
-                        <Button
-                          onClick={() => setIsModalOpen(true)}
-                          className="flex-1 gap-2"
-                        >
-                          <Presentation size={16} /> Preview slides
-                        </Button>
-                        <Button variant="outline" asChild className="flex-1 gap-2">
-                          <a href={DASHBOARD_DECK_DOWNLOAD_URL} download="banking-dashboards.pdf">
-                            Download deck
-                          </a>
-                        </Button>
-                      </div>
+                      (() => {
+                        const deckId = project.action.deckId;
+                        const deck = DECKS[deckId];
+                        return (
+                          <div className="flex gap-3 w-full">
+                            <Button onClick={() => setOpenDeckId(deckId)} className="flex-1 gap-2">
+                              <Presentation size={16} /> {deck.buttonLabel}
+                            </Button>
+                            <Button variant="outline" asChild className="flex-1 gap-2">
+                              <a href={`${import.meta.env.BASE_URL}assets/${deck.fileName}`} download={deck.fileName}>
+                                Download PDF
+                              </a>
+                            </Button>
+                          </div>
+                        );
+                      })()
                     ) : (
                       <Button asChild variant="default" className="w-full gap-2">
                         <a href={project.action.href} target={project.action.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
@@ -269,27 +292,19 @@ export default function Projects() {
         </div>
       </div>
 
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog open={openDeckId !== null} onOpenChange={(open) => setOpenDeckId(open ? openDeckId : null)}>
         <DialogContent className="max-w-4xl w-[90vw] h-[80vh] flex flex-col">
           <DialogHeader>
-            <DialogTitle>Power BI Banking Dashboards</DialogTitle>
-            <DialogDescription>
-              Preview of financial KPIs and operational reporting dashboards.
-            </DialogDescription>
+            <DialogTitle>{openDeck?.title}</DialogTitle>
+            <DialogDescription>{openDeck?.description}</DialogDescription>
           </DialogHeader>
 
           <div className="flex-1 bg-muted rounded-md overflow-hidden relative flex items-center justify-center border border-border">
-            {DASHBOARD_DECK_URL ? (
+            {openDeckUrl && (
               <iframe
-                src={DASHBOARD_DECK_URL}
+                src={openDeckUrl}
                 className="w-full h-full border-0"
-                title="Banking Dashboards Presentation"
-              />
-            ) : (
-              <img
-                src={powerbiImg}
-                alt="Power BI banking dashboard preview"
-                className="max-h-full max-w-full object-contain"
+                title={openDeck?.title}
               />
             )}
           </div>
