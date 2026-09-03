@@ -260,11 +260,11 @@ export default function Projects() {
                         const deckId = project.action.deckId;
                         const deck = DECKS[deckId];
                         return (
-                          <div className="flex gap-3 w-full">
-                            <Button onClick={() => setOpenDeckId(deckId)} className="flex-1 gap-2">
+                          <div className="flex flex-col gap-2 w-full">
+                            <Button onClick={() => setOpenDeckId(deckId)} className="w-full gap-2">
                               <Presentation size={16} /> {deck.buttonLabel}
                             </Button>
-                            <Button variant="outline" asChild className="flex-1 gap-2">
+                            <Button variant="outline" asChild className="w-full gap-2">
                               <a href={`${import.meta.env.BASE_URL}assets/${deck.fileName}`} download={deck.fileName}>
                                 Download PDF
                               </a>
