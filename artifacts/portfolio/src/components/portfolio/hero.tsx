@@ -49,7 +49,7 @@ export default function Hero() {
               I bridge the gap between tools, systems, data, and the business, turning operational and financial complexity into something teams can actually use.
             </p>
             <p>
-              A Data Analyst with a Computer Science background, I specialize in SQL, Python, and Power BI: automating dashboards, optimizing reporting workflows, and supporting data-driven decisions across teams. I'm drawn to problems with logical depth and clear, real-world impact.
+              Computer Science background, two years as a data analyst in banking, now building full products and automations end to end. I work with AI-accelerated tooling (Replit, Claude Code) alongside NestJS, Next.js, PostgreSQL, Airtable automations, and Google Apps Script, and I set the architecture rather than accept whatever the AI generates.
             </p>
           </motion.div>
 
